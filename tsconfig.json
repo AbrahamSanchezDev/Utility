@@ -1,29 +1,28 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
-      "es2018",
+      "es2022",
       "dom"
     ],
     "paths": {
       "tools": [
-        "dist/tools/tools",
-        "dist/tools"
+        "./dist/tools/tools", // <-- ADD THE LEADING ./ HERE
+        "./dist/tools" // <-- ADD THE LEADING ./ HERE
       ]
     }
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
+    "strictTemplates": true,
     "strictInjectionParameters": true
   }
 }

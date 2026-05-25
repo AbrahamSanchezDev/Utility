@@ -4,7 +4,7 @@ import { ArraysTool } from './arrays-tool';
 
 describe('ArraysTool', () => {
   let service: ArraysTool;
-  let numbers;
+  let numbers: number[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

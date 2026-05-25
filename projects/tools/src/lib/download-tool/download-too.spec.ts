@@ -1,10 +1,10 @@
-import { async, TestBed } from '@angular/core/testing';
+import { waitForAsync, TestBed } from '@angular/core/testing';
 import { DownloadTool } from './download-tool';
 
 describe('DownloadTool', () => {
   let service: DownloadTool;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({}).compileComponents();
   }));
   beforeEach(() => {

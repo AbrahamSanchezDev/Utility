@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "ignoreDeprecations": "6.0", // <-- ADD THIS LINE to bypass the errors
     "outDir": "../../out-tsc/lib",
     "target": "es2015",
     "declaration": true,

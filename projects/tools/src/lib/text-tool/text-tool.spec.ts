@@ -1,23 +1,25 @@
-import { TestBed, async } from '@angular/core/testing';
+/// <reference types="jasmine" />
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TextTool } from './text-tool';
 import { ElementRef } from '@angular/core';
 export class MockElementRef extends ElementRef {}
+
 describe('TextTool', () => {
   let service: TextTool;
-  let input: ElementRef<HTMLInputElement>;
+  let input: ElementRef<HTMLInputElement> | null;
   const firstText = 'This is some previews text'; //26
   const link = 'www.google.com'; //16
   const link2 = 'www.youtube.com';
   const endText = 'Other Text';
   const fullText = `${firstText}${link}${endText}`;
-  const setTextInInput = (fullText, lookingForText) => {
-    input.nativeElement.innerText = fullText;
+  const setTextInInput = (fullText: string, lookingForText: string) => {
+    input!.nativeElement.innerText = fullText;
     let textPos = fullText.indexOf(lookingForText);
-    input.nativeElement.selectionStart = textPos;
+    input!.nativeElement.selectionStart = textPos;
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         //more providers
@@ -41,7 +43,7 @@ describe('TextTool', () => {
   //Test replaceTextAt function
   it('should replace google link to youtube', () => {
     setTextInInput(fullText, link);
-    let theText = service.replaceTextAt(fullText, input, link2, link);
+    let theText = service.replaceTextAt(fullText, input!, link2, link);
 
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);
@@ -61,9 +63,9 @@ describe('TextTool', () => {
   it('should insert LinkedIn(some Text) to the original text', () => {
     setTextInInput(fullText, link);
 
-    const addedText = `LinkedIn 
+    const addedText = `LinkedIn
     `;
-    let theText = service.insertText(fullText, addedText, input);
+    let theText = service.insertText(fullText, addedText, input!);
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);
     expect(theText).toContain(link);
@@ -74,7 +76,7 @@ describe('TextTool', () => {
   //Test insertText function
   it('should insert Some Text after the given text', () => {
     const addedText = `
-    LinkedIn 
+    LinkedIn
     Some other text added
     `;
     let theText = service.insertAfter(fullText, link, addedText);
@@ -102,12 +104,12 @@ describe('TextTool', () => {
     const end = '</start>';
     const startTextToRemove = 'Index Text Of';
     const textShouldBeGone = `More Text Here that should be removed`;
-    const biggerText = `${startTextToRemove}     
+    const biggerText = `${startTextToRemove}
     ${start}
     ${fullText}
-    ${link2}  
+    ${link2}
     ${end}
-    
+
     ${textShouldBeGone}`;
 
     let theText = service.keepAllTextInBetween(biggerText, start, end);
@@ -159,7 +161,7 @@ describe('TextTool', () => {
       continuesText,
       `${link2} ... `,
       start,
-      end
+      end,
     );
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);

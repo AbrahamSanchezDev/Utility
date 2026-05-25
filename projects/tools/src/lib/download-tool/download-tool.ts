@@ -3,7 +3,7 @@ export class DownloadTool {
   constructor() {}
 
   //This creates a json file with the given data
-  DownloadTextToFileAsJson(theText: any, fileName: string): void {
+  DownloadTextToFileAsJson(theText: any, fileName: string | null): void {
     if (theText == null) {
       console.log('No Data');
       return;

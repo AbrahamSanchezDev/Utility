@@ -43,8 +43,8 @@ export class TextTool {
   //Insert text at the given element in it last selected position
   insertText(
     originalText: string,
-    textToAdd: string,
-    element: ElementRef
+    textToAdd: string | null,
+    element: ElementRef | null
   ): string {
     if (textToAdd == null || element == null) {
       return originalText;

@@ -11,7 +11,7 @@ export class RemoveReplaceOption extends TextTool {
     originalString: string,
     options: RemoveReplaceOptions
   ): string {
-    const { removeFromTo, replaceText } = options;
+    const { removeFromTo = [], replaceText = [] } = options;
 
     originalString = this.removeFromToOptions(originalString, removeFromTo);
 
@@ -55,7 +55,7 @@ export class RemoveReplaceOption extends TextTool {
           originalString,
           removeFromTo[i].replaceFor,
           removeFromTo[i].original,
-          removeFromTo[i].originalEnd
+          removeFromTo[i].originalEnd ?? ''
         );
         counter++;
         if (counter > 100) {

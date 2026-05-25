@@ -5,9 +5,9 @@ import { ReplaceStrings } from '../remove-replace-option/interface/replace-strin
 const videoReplace: ReplaceStrings[] = [
   {
     original: '[video]',
-    replaceFor: `    
-<iframe width="560" height="315" 
-frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; 
+    replaceFor: `
+<iframe width="560" height="315"
+frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
 picture-in-picture" allowfullscreen
 src="`,
   },
@@ -175,9 +175,9 @@ ${textToReplace}
   }
   //Replace select text to be a link
   replaceSelectedToLink(
-    originalText: string,
+    originalText: string | null,
     linkText: string,
-    element: ElementRef<any>
+    element: ElementRef<any> | null
   ): string {
     if (originalText == null || element == null) {
       return '';

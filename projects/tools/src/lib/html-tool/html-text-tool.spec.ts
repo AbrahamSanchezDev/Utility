@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HtmlTextTool } from './html-text-tool';
 import { ElementRef } from '@angular/core';
@@ -12,13 +12,13 @@ describe('HtmlTool', () => {
   const link = 'www.google.com';
   const endText = 'Other Text';
 
-  const setTextInInput = (fullText, lookingForText) => {
+  const setTextInInput = (fullText: string, lookingForText: string): void => {
     input.nativeElement.innerText = fullText;
     let textPos = fullText.indexOf(lookingForText);
     input.nativeElement.selectionStart = textPos;
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         //more providers
@@ -33,7 +33,7 @@ describe('HtmlTool', () => {
     spyOn(console, 'log');
   });
   afterAll(() => {
-    input = null;
+    input = null as any;
   });
 
   it('should be created', () => {
@@ -123,16 +123,16 @@ describe('HtmlTool', () => {
   //#endregion
 
   //#region video formatting
-  const textWithVideo = ` 
+  const textWithVideo = `
   [video]https://youtu.be/09j1wYdNfVQ[/video]
   If you need a step by step you can always go to YouTube here is one that i really like
   [video]https://www.youtube.com/embed/k5E2AVpwsko[/video]`;
   const videoReplace: ReplaceStrings[] = [
     {
       original: '[video]',
-      replaceFor: `    
-    <iframe width="560" height="315" 
-    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; 
+      replaceFor: `
+    <iframe width="560" height="315"
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
     picture-in-picture" allowfullscreen
     src="`,
     },

@@ -67,7 +67,7 @@ describe('RemoveReplaceOptionService', () => {
     <start> starting </start> midText <end> www.google.com </end>
     <a> www.google.com </a Some Random string >
     www.youtube.com
-    <img> www.youtube.com </img> 
+    <img> www.youtube.com </img>
     <img>  www.google.com </img> ending
       `;
     let text = service.removeAllOptions(fullReplaceText, options);
@@ -107,7 +107,7 @@ describe('RemoveReplaceOptionService', () => {
     `;
     let text = service.removeFromToOptions(
       replaceFromToText,
-      options.removeFromTo
+      options.removeFromTo!
     );
     expect(text).toContain(startText);
     expect(text).toContain(endText);
@@ -137,7 +137,7 @@ describe('RemoveReplaceOptionService', () => {
     Some starting Text <start> Some Random string </start> www.google.com <end> Some Random string </end>
     <end> Some Random string </end> Some ending Text
       `;
-    let text = service.replaceTextOptions(fullReplaceText, options.replaceText);
+    let text = service.replaceTextOptions(fullReplaceText, options.replaceText!);
     expect(text).toContain(startText);
     expect(text).toContain(endText);
     expect(text).toContain(midText);
