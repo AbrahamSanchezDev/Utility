@@ -37,7 +37,7 @@ describe('RemoveReplaceOptionService', () => {
   //#endregion
 
   //Options to be tested
-  let options: RemoveReplaceOptions = {
+  const options: RemoveReplaceOptions = {
     removeFromTo: [
       { original: linkStart, originalEnd: closingEnd, replaceFor: button },
       { original: linkEnd, originalEnd: closingEnd, replaceFor: buttonEnd },
@@ -70,7 +70,7 @@ describe('RemoveReplaceOptionService', () => {
     <img> www.youtube.com </img>
     <img>  www.google.com </img> ending
       `;
-    let text = service.removeAllOptions(fullReplaceText, options);
+    const text = service.removeAllOptions(fullReplaceText, options);
 
     expect(text).toContain('starting');
     expect(text).toContain('ending');

@@ -25,14 +25,14 @@ export class ArraysTool {
   }
   //Move to the left (example: if it was at 1 the it will move to the 0)
   moveElementLeft(array: any[], element: any): void {
-    let curIndex = array.indexOf(element);
-    let newPos = curIndex - 1;
+    const curIndex = array.indexOf(element);
+    const newPos = curIndex - 1;
     this.moveElementInArray(array, element, newPos);
   }
   //Move to the right (example: if it was at 1 the it will move to the 2)
   moveElementRight(array: any[], element: any): void {
-    let curIndex = array.indexOf(element);
-    let newPos = curIndex + 1;
+    const curIndex = array.indexOf(element);
+    const newPos = curIndex + 1;
     this.moveElementInArray(array, element, newPos);
   }
 

@@ -14,7 +14,7 @@ describe('HtmlTool', () => {
 
   const setTextInInput = (fullText: string, lookingForText: string): void => {
     input.nativeElement.innerText = fullText;
-    let textPos = fullText.indexOf(lookingForText);
+    const textPos = fullText.indexOf(lookingForText);
     input.nativeElement.selectionStart = textPos;
   };
 

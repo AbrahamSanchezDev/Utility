@@ -15,9 +15,9 @@ export class TextTool {
     originalReplace?: string
   ): string {
     //Get the starting position
-    let index = element.nativeElement.selectionStart;
+    const index = element.nativeElement.selectionStart;
     //Extra inf in case you changed something
-    let originalLength = originalReplace
+    const originalLength = originalReplace
       ? originalReplace.length
       : textToReplace.length;
 
@@ -50,7 +50,7 @@ export class TextTool {
       return originalText;
     }
     //Get the last selected position
-    let startPos = element.nativeElement.selectionStart;
+    const startPos = element.nativeElement.selectionStart;
 
     return `${originalText.substring(
       0,
@@ -142,12 +142,12 @@ export class TextTool {
     end: string,
     startLookingAt?: number
   ): string {
-    let startIndex = originalString.indexOf(start, startLookingAt);
-    let endIndex = originalString.indexOf(end, startIndex);
+    const startIndex = originalString.indexOf(start, startLookingAt);
+    const endIndex = originalString.indexOf(end, startIndex);
     if (startIndex == -1 || endIndex == -1) {
       return originalString;
     }
-    let original = originalString.substring(startIndex, endIndex + end.length);
+    const original = originalString.substring(startIndex, endIndex + end.length);
     originalString = this.replaceText(originalString, original, replaceFor);
     this.removedTotal++;
     return originalString;

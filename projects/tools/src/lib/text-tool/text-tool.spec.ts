@@ -15,7 +15,7 @@ describe('TextTool', () => {
   const fullText = `${firstText}${link}${endText}`;
   const setTextInInput = (fullText: string, lookingForText: string) => {
     input!.nativeElement.innerText = fullText;
-    let textPos = fullText.indexOf(lookingForText);
+    const textPos = fullText.indexOf(lookingForText);
     input!.nativeElement.selectionStart = textPos;
   };
 
@@ -43,7 +43,7 @@ describe('TextTool', () => {
   //Test replaceTextAt function
   it('should replace google link to youtube', () => {
     setTextInInput(fullText, link);
-    let theText = service.replaceTextAt(fullText, input!, link2, link);
+    const theText = service.replaceTextAt(fullText, input!, link2, link);
 
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);
@@ -53,7 +53,7 @@ describe('TextTool', () => {
   //Test replaceText function
   it('should replace first match and replace it for the given text', () => {
     setTextInInput(fullText, link);
-    let theText = service.replaceText(fullText, link, link2);
+    const theText = service.replaceText(fullText, link, link2);
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);
     expect(theText).toContain(link2);
@@ -144,7 +144,7 @@ describe('TextTool', () => {
     const end = '</start>';
     const continuesText = `${firstText} ${start} ${link} ${end}  ${start}${link2}${end} ${endText}
     ${start} ${link} ${end}   ${firstText}   ${start}${link2}${end}  `;
-    let theText = service.removeAllTextFromTo(continuesText, start, end);
+    const theText = service.removeAllTextFromTo(continuesText, start, end);
     expect(theText).toContain(firstText);
     expect(theText).toContain(endText);
     expect(theText).not.toContain(start);

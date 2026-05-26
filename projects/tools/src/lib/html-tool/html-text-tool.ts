@@ -95,13 +95,13 @@ export class HtmlTextTool extends RemoveReplaceOption {
     }
     let counter = 0;
     while (originalString.indexOf(codeTagStart) != -1) {
-      let startIndex = originalString.indexOf(codeTagStart);
-      let endIndex = originalString.indexOf(codeTagEnd);
+      const startIndex = originalString.indexOf(codeTagStart);
+      const endIndex = originalString.indexOf(codeTagEnd);
       if (endIndex < 0 || startIndex < 0 || counter > 50) {
         console.log('Code not formatead correctly');
         return originalString;
       }
-      let originalInnerText = this.getTextBetween(
+      const originalInnerText = this.getTextBetween(
         originalString,
         codeTagStart,
         codeTagEnd
@@ -109,8 +109,8 @@ export class HtmlTextTool extends RemoveReplaceOption {
       let formateadText = originalInnerText;
       formateadText = this.formatAnyTagContainer(formateadText);
 
-      let before = originalString.substring(0, startIndex);
-      let after = originalString.substring(endIndex + codeTagEnd.length);
+      const before = originalString.substring(0, startIndex);
+      const after = originalString.substring(endIndex + codeTagEnd.length);
 
       originalString = `${before}${codeFormateadStart}${formateadText}${codeFormateadEnd}${after}`;
       counter++;
@@ -169,8 +169,8 @@ ${textToReplace}
     linkText: string,
     element: ElementRef<any>
   ): string {
-    let noSpaces = linkText.replace(/\s/g, '');
-    let theNewText = `<img src="${noSpaces}" alt = "Image not found"/>`;
+    const noSpaces = linkText.replace(/\s/g, '');
+    const theNewText = `<img src="${noSpaces}" alt = "Image not found"/>`;
     return this.replaceTextAt(text, element, theNewText, linkText);
   }
   //Replace select text to be a link
@@ -205,7 +205,7 @@ ${textToReplace}
     altText: string,
     element: ElementRef<any>
   ) {
-    let replaceFor = `<img src="${link}" alt = "${altText}"/>`;
+    const replaceFor = `<img src="${link}" alt = "${altText}"/>`;
     return this.insertText(originalText, replaceFor, element);
   }
   //#endregion
@@ -240,7 +240,7 @@ ${textToReplace}
     textToReplace: string,
     element: ElementRef
   ): string {
-    var replaceFor = `<${tag}>${textToReplace}</${tag}>`;
+    const replaceFor = `<${tag}>${textToReplace}</${tag}>`;
     return this.replaceTextAt(text, element, replaceFor, textToReplace);
   }
 }
