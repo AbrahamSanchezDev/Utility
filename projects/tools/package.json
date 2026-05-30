@@ -1,12 +1,12 @@
 {
   "name": "@worldsdev/tools",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "peerDependencies": {
-    "@angular/common": "^9.1.11",
-    "@angular/core": "^9.1.11"
+    "@angular/common": "^21.2.14",
+    "@angular/core": "^21.2.14"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.8.1"
   },
   "description": "Utility tools for arrays, text formatting  and download files and others...",
   "main": "public-api.ts",

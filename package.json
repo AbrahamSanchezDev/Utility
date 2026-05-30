@@ -48,6 +48,7 @@
     "typescript-eslint": "^8.60.0"
   },
   "publishConfig": {
-    "registry": "https://github.com/AbrahamSanchezDev/Utility.git"
+    "repository": "https://github.com/AbrahamSanchezDev/Utility.git",
+    "registry": "https://www.npmjs.com/package/@worldsdev/tools"
   }
 }
