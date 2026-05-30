@@ -1,6 +1,6 @@
 {
   "name": "utility",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -46,5 +46,8 @@
     "ng-packagr": "^21.2.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0"
+  },
+  "publishConfig": {
+    "registry": "https://github.com/AbrahamSanchezDev/Utility.git"
   }
 }
