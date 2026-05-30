@@ -6,6 +6,21 @@ Utility is a small Angular utility library for array operations, text/HTML forma
 
 > This repository contains an Angular library package that can be built and published to npm for reuse in other projects.
 
+**Publish to npm**
+- When a new version is about to be publish the package.json inside of projects/tools should be updated
+
+```bash
+  "version": "0.0.3", <--- THIS ONE
+```
+
+
+- in order to publish to npm you have to have the console path in tools then run the publish command
+```bash
+cd projects/tools
+
+npm publish
+```
+
 **Summary**
 - **ArraysTool**: move, remove, combine, and shuffle array elements.
 - **TextTool**: generic string operations (replace, insert, extract, remove segments).
