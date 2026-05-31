@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class ArraysTool {
   constructor() {}
   //Move element
   moveElementInArray(array: any[], element: any, newPos: number): void {
-    var index = array.indexOf(element);
+    const index = array.indexOf(element);
     // Item non-existent?
     if (index == -1 || newPos >= array.length) {
       console.log('Out of index or element is not in the array');
@@ -46,7 +47,7 @@ export class ArraysTool {
   }
   //shuffle the array content
   shuffle(array: any[]): any[] {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       temporaryValue,
       randomIndex;
 

@@ -6,17 +6,17 @@ import { RemoveReplaceOptions } from './interface/remove-replace-options';
 describe('RemoveReplaceOptionService', () => {
   let service: RemoveReplaceOption;
   //#region Variables
-  const closingEnd: string = '>';
+  const closingEnd = '>';
   //Originals
-  const start: string = '<start>';
-  const startEnd: string = '</start>';
-  const end: string = '<end>';
-  const endEnd: string = '</end>';
+  const start = '<start>';
+  const startEnd = '</start>';
+  const end = '<end>';
+  const endEnd = '</end>';
 
-  const linkStart: string = '<a';
-  const linkEnd: string = '</a';
-  const imgStart: string = '<img';
-  const imgEnd: string = '</img';
+  const linkStart = '<a';
+  const linkEnd = '</a';
+  const imgStart = '<img';
+  const imgEnd = '</img';
   //#region Replace To
   //Replace to
   const button = '<button>';
@@ -24,16 +24,16 @@ describe('RemoveReplaceOptionService', () => {
   const body = '<body>';
   const bodyEnd = '</body>';
 
-  const div: string = '<div>';
-  const divEnd: string = '</div>';
-  const p: string = '<p>';
-  const pEnd: string = '</p>';
+  const div = '<div>';
+  const divEnd = '</div>';
+  const p = '<p>';
+  const pEnd = '</p>';
   //#endregion
 
-  const startText: string = 'starting';
-  const midText: string = 'www.google.com';
-  const otherMid: string = 'www.youtube.com';
-  const endText: string = 'Some ending Text';
+  const startText = 'starting';
+  const midText = 'www.google.com';
+  const otherMid = 'www.youtube.com';
+  const endText = 'Some ending Text';
   //#endregion
 
   //Options to be tested
@@ -107,7 +107,7 @@ describe('RemoveReplaceOptionService', () => {
     `;
     let text = service.removeFromToOptions(
       replaceFromToText,
-      options.removeFromTo!
+      options.removeFromTo!,
     );
     expect(text).toContain(startText);
     expect(text).toContain(endText);
@@ -137,7 +137,10 @@ describe('RemoveReplaceOptionService', () => {
     Some starting Text <start> Some Random string </start> www.google.com <end> Some Random string </end>
     <end> Some Random string </end> Some ending Text
       `;
-    let text = service.replaceTextOptions(fullReplaceText, options.replaceText!);
+    let text = service.replaceTextOptions(
+      fullReplaceText,
+      options.replaceText!,
+    );
     expect(text).toContain(startText);
     expect(text).toContain(endText);
     expect(text).toContain(midText);

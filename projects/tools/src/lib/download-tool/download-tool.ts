@@ -11,10 +11,10 @@ export class DownloadTool {
       console.log('No fileName');
       return;
     }
-    var blob = new Blob([JSON.stringify(theText, null, 2)], {
+    const blob = new Blob([JSON.stringify(theText, null, 2)], {
       type: 'application/json',
     });
-    var url = window.URL.createObjectURL(blob);
+    const url = window.URL.createObjectURL(blob);
     this.linkElement.href = url;
     this.linkElement.download = fileName + '.json';
     this.linkElement.click();

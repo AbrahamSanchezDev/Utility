@@ -2,8 +2,6 @@
  * Public API Surface of tools
  */
 
-export * from './lib/tools.module';
-
 export * from './lib/arrays-tool/arrays-tool';
 export * from './lib/download-tool/download-tool';
 export * from './lib/html-tool/html-text-tool';
