@@ -1,6 +1,5 @@
 export class DownloadTool {
   linkElement = document.createElement('a');
-  constructor() {}
 
   //This creates a json file with the given data
   DownloadTextToFileAsJson(theText: any, fileName: string | null): void {

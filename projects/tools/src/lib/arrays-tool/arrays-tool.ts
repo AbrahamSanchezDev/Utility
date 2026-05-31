@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export class ArraysTool {
-  constructor() {}
   //Move element
   moveElementInArray(array: any[], element: any, newPos: number): void {
     const index = array.indexOf(element);
