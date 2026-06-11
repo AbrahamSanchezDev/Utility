@@ -1,0 +1,14 @@
+{
+  "id": "worldsdev-tools",
+  "title": "@worldsdev/Tools",
+  "subtitle": "Angular utility library for arrays, text formatting, HTML transformation, and file downloads",
+  "techBadge": "Angular / TypeScript",
+  "gifUrl": "",
+  "repoUrl": "https://github.com/worldsdev/utility",
+  "demoUrl": "https://www.npmjs.com/package/@worldsdev/tools",
+  "challenge": "Design a reusable, modular utility library that provides robust text and array manipulation capabilities while maintaining clean separation of concerns and extensibility. The solution needed to handle HTML sanitization, complex string replacements, and browser-based file downloads in an Angular-compatible way.",
+  "architecture": "Inheritance-based utility hierarchy (TextTool → RemoveReplaceOption → HtmlTextTool) with composition pattern for rule-based operations. Each tool class encapsulates specific domain logic (arrays, text, downloads) with extensible interfaces for flexible replacement and removal rules.",
+  "techStack": ["Angular", "TypeScript", "ng-packagr", "Karma", "Jasmine"],
+  "codeSnippetTitle": "HTML Text Formatting Example",
+  "codeSnippet": "const htmlTool = new HtmlTextTool();\nconst formatted = htmlTool.formatAllText(\n  '[code]const x = 5;[/code] and <img src=\"test.png\">'\n);\n// Transforms code blocks to styled divs and adds classes to images\n// Escapes HTML tags for safe display: <app-root> becomes &lt;app-root&gt;"
+}

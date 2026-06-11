@@ -1,206 +1,373 @@
-# Tools
+# 📦 @worldsdev/Tools
+
+Angular utility library for arrays, text formatting, HTML transformation, and file downloads.
+
+---
 
 ## English
 
-Utility is a small Angular utility library for array operations, text/HTML formatting, and JSON file downloads.
+### 📋 Project Summary
 
-> This repository contains an Angular library package that can be built and published to npm for reuse in other projects.
+**@worldsdev/Tools** is a production-ready Angular utility library that provides robust, reusable utilities for common programming tasks. The library is designed for developers who need reliable, well-tested utilities for array manipulation, string operations, HTML formatting, and browser-based file downloads. This package can be built and published to npm for seamless integration into other Angular projects.
 
-**Publish to npm**
-- When a new version is about to be publish the package.json inside of projects/tools should be updated
+### 🎯 Project Overview
 
-```bash
-  "version": "0.0.3", <--- THIS ONE
+The Tools library encapsulates five core utility classes, each solving specific programming challenges:
+
+- **Array Operations**: Move, remove, combine, and shuffle array elements with a fluent API
+- **String Manipulation**: Insert, replace, extract, and remove text segments with precision
+- **Rule-Based Transformations**: Apply bulk replacements and removals using declarative rule objects
+- **HTML Formatting**: Transform user input into safe, displayable HTML with support for custom tags, code blocks, images, and embedded media
+- **File Downloads**: Export JavaScript objects directly to JSON files in the browser
+
+### ✨ Key Features
+
+- ✅ **ArraysTool**: Move elements left/right, remove items, combine arrays, shuffle with Fisher-Yates algorithm
+- ✅ **TextTool**: Replace, insert, and extract text with selection-aware positioning
+- ✅ **RemoveReplaceOption**: Bulk text operations using declarative rule-based configuration
+- ✅ **HtmlTextTool**: Safe HTML display with custom tag conversion, code formatting, image/video embedding
+- ✅ **DownloadTool**: Browser-based JSON export functionality
+- ✅ **Inheritance-based Architecture**: Clean separation of concerns with extensible class hierarchy
+- ✅ **TypeScript**: Full type safety with strict null checking
+- ✅ **Framework-Agnostic Core**: Utilities can be used independently
+
+### 📂 Project Structure
+
+```
+projects/tools/
+├── src/
+│   ├── lib/
+│   │   ├── arrays-tool/          # Array manipulation utilities
+│   │   ├── text-tool/            # Base text manipulation
+│   │   ├── remove-replace-option/ # Rule-based transformation
+│   │   ├── html-tool/            # HTML-specific formatting
+│   │   ├── download-tool/        # Browser download utilities
+│   │   └── tools.module.ts       # Angular module export
+│   ├── public-api.ts             # Public barrel export
+│   └── test.ts                   # Test entry point
+├── ng-package.json               # ng-packagr configuration
+└── package.json                  # Package metadata
 ```
 
+### 🏗️ Architecture Highlights
 
-- in order to publish to npm you have to have the console path in tools then run the publish command
-```bash
-cd projects/tools
+The library uses an **inheritance-based hierarchy** for code reuse:
 
-npm publish
+```
+TextTool (base string operations)
+    ↓
+RemoveReplaceOption (rule-based bulk operations)
+    ↓
+HtmlTextTool (HTML-safe transformations)
 ```
 
-**Summary**
-- **ArraysTool**: move, remove, combine, and shuffle array elements.
-- **TextTool**: generic string operations (replace, insert, extract, remove segments).
-- **RemoveReplaceOption**: utilities for rule-based replacements and bulk removal.
-- **HtmlTextTool**: formats text for safe HTML display, converts custom tags, code blocks, images, and videos.
-- **DownloadTool**: exports data to a downloadable JSON file in the browser.
+**Patterns Used**:
+- **Inheritance**: Reusable base functionality in parent classes
+- **Composition**: Rule objects (`RemoveReplaceOptions`, `ReplaceStrings`) for flexible configuration
+- **Strategy Pattern**: Different formatting rules for code, images, and videos
+- **Immutable Operations**: Methods return new strings without mutating originals (where applicable)
 
-**Relevant structure**
-- Library source: `projects/tools/src/lib/`
-- Public exports: `projects/tools/src/public-api.ts`
+### 🛠️ Technology Stack
 
-**How to use this repository (development and testing)**
+- **Angular** (`^21.2.14`) — Framework for module integration and testing
+- **TypeScript** (`^6.0.3`) — Type-safe implementation
+- **ng-packagr** (`^21.2.3`) — Library bundling and distribution
+- **Karma** (`~6.4.0`) — Test runner
+- **Jasmine** (`~5.1.0`) — Unit testing framework
+- **RxJS** (`^7.8.2`) — Reactive utilities (Angular compatibility)
 
-1. Install dependencies:
+### 💻 Code Quality & Engineering Practices
 
-```bash
-npm install
-```
+This library demonstrates professional software engineering:
 
-2. Run development server:
+- **Type Safety**: Full TypeScript strict mode with explicit types
+- **Separation of Concerns**: Single Responsibility Principle with focused utility classes
+- **Extensibility**: Base classes designed for inheritance and composition
+- **Testability**: Isolated, pure functions with clear contracts
+- **Documentation**: Self-documenting method names and clear parameter intent
+- **Maintainability**: Clean code structure with logical grouping in separate files
 
-```bash
-npm run start
-```
+### 🚀 How to Build & Run Locally
 
-3. Build the workspace or the library:
+**Prerequisites**: Node.js >= 18, npm >= 9, Angular CLI >= 21
 
-- Build the full project:
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run build
-```
+2. **Run development server** (for testing and development):
+   ```bash
+   npm run start
+   ```
 
-- Build only the `tools` library:
+3. **Build the library**:
+   ```bash
+   # Build full workspace
+   npm run build
+   
+   # Or build only the tools library
+   ng build tools
+   ```
 
-```bash
-ng build tools
-```
+4. **Run tests**:
+   ```bash
+   npm run test
+   ```
 
-4. Run unit tests:
+5. **Lint code**:
+   ```bash
+   npm run lint
+   ```
 
-```bash
-npm run test
-```
+6. **Publish to npm** (after building):
+   ```bash
+   cd dist/@worldsdev/tools
+   npm publish
+   ```
 
-5. Run the linter:
+### 📖 Usage Examples
 
-```bash
-npm run lint
-```
-
-**`package.json` scripts**
-- **`npm run start`**: runs `ng serve` and starts the development server.
-- **`npm run build`**: runs `ng build`. Use `ng build tools` to build only the library.
-- **`npm run test`**: runs `ng test` (Karma + Jasmine).
-- **`npm run lint`**: runs `ng lint`.
-
-**Usage examples (after publishing or building the library)**
-
-The package name in `projects/tools/package.json` is `@worldsdev/tools`.
+**After publishing to npm or importing from source**:
 
 ```ts
-import { ArraysTool, DownloadTool, HtmlTextTool } from '@worldsdev/tools';
+import { ArraysTool, DownloadTool, HtmlTextTool, TextTool } from '@worldsdev/tools';
 
-const a = new ArraysTool();
-console.log(a.shuffle([1, 2, 3, 4]));
+// Array utilities
+const arrayTool = new ArraysTool();
+const shuffled = arrayTool.shuffle([1, 2, 3, 4, 5]);
+const moved = [...shuffled];
+arrayTool.moveElementRight(moved, 3); // Move element 3 to the right
 
-const d = new DownloadTool();
-d.DownloadTextToFileAsJson({ hello: 'world' }, 'my-data');
+// Text utilities
+const textTool = new TextTool();
+const inserted = textTool.insertAfter('Hello World', 'Hello', '✨ ');
+// Result: "Hello✨ World"
 
-const h = new HtmlTextTool();
-console.log(h.formatAllText('<app-root>Hello</app-root>'));
+// HTML formatting
+const htmlTool = new HtmlTextTool();
+const safe = htmlTool.formatAllText('<app-root>My Component</app-root>');
+// Converts tags to safe HTML entities: &lt;app-root&gt;My Component&lt;/app-root&gt;
+
+// File downloads
+const downloadTool = new DownloadTool();
+downloadTool.DownloadTextToFileAsJson({ name: 'John', age: 30 }, 'user-data');
+// Downloads: user-data.json
 ```
 
-If you work inside the monorepo without publishing, import from `projects/tools/src/public-api.ts` or build the library and consume it from `dist/`.
+### 📚 Class Reference
 
-**Class details**
-- `ArraysTool` — methods: `moveElementInArray`, `moveElementAtIndexLeft/Right`, `moveElementLeft/Right`, `removeFromArray`, `combine`, `shuffle`.
-- `TextTool` — methods: `replaceTextAt`, `replaceText`, `insertText`, `insertAfter`, `insertBefore`, `getTextBetween`, `removeAllTextFromTo`, `removeTextFromTo`.
-- `RemoveReplaceOption` — methods: `removeAllOptions`, `replaceTextOptions`, `removeFromToOptions`; uses `RemoveReplaceOptions` and `ReplaceStrings`.
-- `HtmlTextTool` — extends `RemoveReplaceOption`, adds code formatting, images, video handling, and HTML-safe transformations.
-- `DownloadTool` — method `DownloadTextToFileAsJson(theText, fileName)` creates and downloads a JSON blob.
+| Class | Purpose | Key Methods |
+|-------|---------|-------------|
+| `ArraysTool` | Array manipulation | `shuffle`, `moveElementInArray`, `removeFromArray`, `combine` |
+| `TextTool` | String operations | `replaceText`, `insertText`, `getTextBetween`, `removeAllTextFromTo` |
+| `RemoveReplaceOption` | Bulk transformations | `removeAllOptions`, `replaceTextOptions` |
+| `HtmlTextTool` | HTML formatting | `formatAllText`, `formatTextToCode`, `setToTag`, `removeAllTags` |
+| `DownloadTool` | Browser downloads | `DownloadTextToFileAsJson` |
 
-**Contributing**
-- Open an issue or submit a pull request.
-- Run `npm run lint` and `npm run test` before contributing.
+### 💡 Development Insights
+
+- **Modular Design**: Each utility can be used independently without dependencies on others
+- **Performance**: Efficient string algorithms with configurable limits on replacement iterations
+- **Browser Compatibility**: Works with modern browsers supporting Blob API and DOM selections
+- **Angular Integration**: Designed as an Angular library using ng-packagr standard
+
+### 🎓 Learning Outcomes
+
+This project demonstrates:
+- Building production-grade npm packages with Angular CLI
+- TypeScript strict mode and type system best practices
+- Library architecture with inheritance and composition
+- Unit testing with Jasmine/Karma
+- String manipulation algorithms and edge case handling
+- HTML sanitization and safe text formatting
+
+### 👨‍💼 Author
+
+**Abraham Sanchez** — Full-stack developer focused on Angular utilities and reusable components.
+
+---
 
 ---
 
 ## Español
 
-Utility es una pequeña librería de utilidades Angular para operaciones con arrays, formateo de texto/HTML y descargas de archivos JSON.
+### 📋 Resumen del Proyecto
 
-> Este repositorio contiene una librería Angular que puede construirse y publicarse en npm para reutilizarse desde otros proyectos.
+**@worldsdev/Tools** es una librería de utilidades Angular lista para producción que proporciona herramientas robustas y reutilizables para tareas comunes. La librería está diseñada para desarrolladores que necesitan utilidades confiables y bien probadas para manipulación de arrays, operaciones con cadenas, formateo HTML y descargas de archivos en el navegador. Este paquete puede compilarse y publicarse en npm para integrarse sin problemas en otros proyectos Angular.
 
-**Resumen**
-- **ArraysTool**: mover, eliminar, combinar y barajar elementos de un array.
-- **TextTool**: operaciones genéricas sobre cadenas (reemplazar, insertar, extraer, eliminar segmentos).
-- **RemoveReplaceOption**: utilidades para reemplazos basados en reglas y eliminación masiva.
-- **HtmlTextTool**: formatea texto para mostrar HTML seguro, convierte etiquetas personalizadas, bloques de código, imágenes y vídeos.
-- **DownloadTool**: exporta datos como un archivo JSON descargable en el navegador.
+### 🎯 Descripción General del Proyecto
 
-**Estructura relevante**
-- Código fuente de la librería: `projects/tools/src/lib/`
-- Exportaciones públicas: `projects/tools/src/public-api.ts`
+La librería Tools encapsula cinco clases de utilidades principales, cada una resolviendo desafíos de programación específicos:
 
-**Cómo usar este repositorio (desarrollo y pruebas)**
+- **Operaciones con Arrays**: Mover, eliminar, combinar y barajar elementos de un array con una API fluida
+- **Manipulación de Cadenas**: Insertar, reemplazar, extraer y eliminar segmentos de texto con precisión
+- **Transformaciones Basadas en Reglas**: Aplicar reemplazos y eliminaciones masivas usando objetos de reglas declarativos
+- **Formateo HTML**: Transformar entrada de usuario en HTML seguro y mostrable con soporte para etiquetas personalizadas, bloques de código, imágenes y medios integrados
+- **Descargas de Archivos**: Exportar objetos JavaScript directamente a archivos JSON en el navegador
 
-1. Instala dependencias:
+### ✨ Características Principales
 
-```bash
-npm install
+- ✅ **ArraysTool**: Mover elementos izquierda/derecha, eliminar elementos, combinar arrays, barajar con algoritmo Fisher-Yates
+- ✅ **TextTool**: Reemplazar, insertar y extraer texto con posicionamiento consciente de la selección
+- ✅ **RemoveReplaceOption**: Operaciones de texto masivas usando configuración declarativa basada en reglas
+- ✅ **HtmlTextTool**: Visualización segura de HTML con conversión de etiquetas personalizadas, formateo de código, incrustación de imágenes/vídeo
+- ✅ **DownloadTool**: Funcionalidad de exportación JSON basada en navegador
+- ✅ **Arquitectura Basada en Herencia**: Separación clara de responsabilidades con jerarquía de clases extensible
+- ✅ **TypeScript**: Seguridad de tipos completa con verificación de nulidad estricta
+- ✅ **Núcleo Agnóstico de Framework**: Las utilidades pueden usarse independientemente
+
+### 📂 Estructura del Proyecto
+
+```
+projects/tools/
+├── src/
+│   ├── lib/
+│   │   ├── arrays-tool/          # Utilidades de manipulación de arrays
+│   │   ├── text-tool/            # Manipulación base de texto
+│   │   ├── remove-replace-option/ # Transformación basada en reglas
+│   │   ├── html-tool/            # Formateo específico de HTML
+│   │   ├── download-tool/        # Utilidades de descarga en navegador
+│   │   └── tools.module.ts       # Exportación del módulo Angular
+│   ├── public-api.ts             # Exportación barrel pública
+│   └── test.ts                   # Punto de entrada de tests
+├── ng-package.json               # Configuración de ng-packagr
+└── package.json                  # Metadatos del paquete
 ```
 
-2. Ejecuta el servidor de desarrollo:
+### 🏗️ Aspectos Destacados de la Arquitectura
 
-```bash
-npm run start
+La librería usa una **jerarquía basada en herencia** para reutilización de código:
+
+```
+TextTool (operaciones base de cadenas)
+    ↓
+RemoveReplaceOption (operaciones masivas basadas en reglas)
+    ↓
+HtmlTextTool (transformaciones seguras para HTML)
 ```
 
-3. Compila el workspace o la librería:
+**Patrones Utilizados**:
+- **Herencia**: Funcionalidad base reutilizable en clases padre
+- **Composición**: Objetos de reglas (`RemoveReplaceOptions`, `ReplaceStrings`) para configuración flexible
+- **Patrón Strategy**: Diferentes reglas de formateo para código, imágenes y vídeos
+- **Operaciones Inmutables**: Los métodos devuelven nuevas cadenas sin mutar originales (donde aplica)
 
-- Compila el proyecto completo:
+### 🛠️ Stack Tecnológico
 
-```bash
-npm run build
-```
+- **Angular** (`^21.2.14`) — Framework para integración de módulos y testing
+- **TypeScript** (`^6.0.3`) — Implementación con seguridad de tipos
+- **ng-packagr** (`^21.2.3`) — Empaquetado y distribución de librerías
+- **Karma** (`~6.4.0`) — Ejecutor de tests
+- **Jasmine** (`~5.1.0`) — Framework de testing unitario
+- **RxJS** (`^7.8.2`) — Utilidades reactivas (compatibilidad Angular)
 
-- Compila solo la librería `tools`:
+### 💻 Calidad de Código y Prácticas de Ingeniería
 
-```bash
-ng build tools
-```
+Esta librería demuestra ingeniería de software profesional:
 
-4. Ejecuta tests unitarios:
+- **Seguridad de Tipos**: TypeScript en modo estricto completo con tipos explícitos
+- **Separación de Responsabilidades**: Principio de Responsabilidad Única con clases de utilidades enfocadas
+- **Extensibilidad**: Clases base diseñadas para herencia y composición
+- **Testabilidad**: Funciones aisladas y puras con contratos claros
+- **Documentación**: Nombres de métodos auto-documentados e intención clara de parámetros
+- **Mantenibilidad**: Estructura de código limpia con agrupación lógica en archivos separados
 
-```bash
-npm run test
-```
+### 🚀 Cómo Compilar y Ejecutar Localmente
 
-5. Ejecuta el linter:
+**Requisitos Previos**: Node.js >= 18, npm >= 9, Angular CLI >= 21
 
-```bash
-npm run lint
-```
+1. **Instala dependencias**:
+   ```bash
+   npm install
+   ```
 
-**Scripts de `package.json`**
-- **`npm run start`**: ejecuta `ng serve` y arranca el servidor de desarrollo.
-- **`npm run build`**: ejecuta `ng build`. Usa `ng build tools` para compilar solo la librería.
-- **`npm run test`**: ejecuta `ng test` (Karma + Jasmine).
-- **`npm run lint`**: ejecuta `ng lint`.
+2. **Ejecuta el servidor de desarrollo** (para testing y desarrollo):
+   ```bash
+   npm run start
+   ```
 
-**Ejemplos de uso (después de publicar o compilar la librería)**
+3. **Compila la librería**:
+   ```bash
+   # Compila el workspace completo
+   npm run build
+   
+   # O compila solo la librería tools
+   ng build tools
+   ```
 
-El nombre del paquete en `projects/tools/package.json` es `@worldsdev/tools`.
+4. **Ejecuta tests**:
+   ```bash
+   npm run test
+   ```
+
+5. **Ejecuta el linter**:
+   ```bash
+   npm run lint
+   ```
+
+6. **Publica en npm** (después de compilar):
+   ```bash
+   cd dist/@worldsdev/tools
+   npm publish
+   ```
+
+### 📖 Ejemplos de Uso
+
+**Después de publicar en npm o importar desde la fuente**:
 
 ```ts
-import { ArraysTool, DownloadTool, HtmlTextTool } from '@worldsdev/tools';
+import { ArraysTool, DownloadTool, HtmlTextTool, TextTool } from '@worldsdev/tools';
 
-const a = new ArraysTool();
-console.log(a.shuffle([1, 2, 3, 4]));
+// Utilidades de array
+const arrayTool = new ArraysTool();
+const barajado = arrayTool.shuffle([1, 2, 3, 4, 5]);
+const movido = [...barajado];
+arrayTool.moveElementRight(movido, 3); // Mover elemento 3 a la derecha
 
-const d = new DownloadTool();
-d.DownloadTextToFileAsJson({ hello: 'world' }, 'mi-datos');
+// Utilidades de texto
+const textTool = new TextTool();
+const insertado = textTool.insertAfter('Hola Mundo', 'Hola', '✨ ');
+// Resultado: "Hola✨ Mundo"
 
-const h = new HtmlTextTool();
-console.log(h.formatAllText('<app-root>Hola</app-root>'));
+// Formateo HTML
+const htmlTool = new HtmlTextTool();
+const seguro = htmlTool.formatAllText('<app-root>Mi Componente</app-root>');
+// Convierte etiquetas a entidades HTML seguras: &lt;app-root&gt;Mi Componente&lt;/app-root&gt;
+
+// Descargas de archivos
+const downloadTool = new DownloadTool();
+downloadTool.DownloadTextToFileAsJson({ nombre: 'Juan', edad: 30 }, 'datos-usuario');
+// Descarga: datos-usuario.json
 ```
 
-Si trabajas dentro del monorepo sin publicar, importa desde `projects/tools/src/public-api.ts` o construye la librería y consúmela desde `dist/`.
+### 📚 Referencia de Clases
 
-**Detalles de cada clase**
-- `ArraysTool` — métodos: `moveElementInArray`, `moveElementAtIndexLeft/Right`, `moveElementLeft/Right`, `removeFromArray`, `combine`, `shuffle`.
-- `TextTool` — métodos: `replaceTextAt`, `replaceText`, `insertText`, `insertAfter`, `insertBefore`, `getTextBetween`, `removeAllTextFromTo`, `removeTextFromTo`.
-- `RemoveReplaceOption` — métodos: `removeAllOptions`, `replaceTextOptions`, `removeFromToOptions`; usa `RemoveReplaceOptions` y `ReplaceStrings`.
-- `HtmlTextTool` — extiende `RemoveReplaceOption`, añade formateo de código, manejo de imágenes y vídeo, y transformaciones para HTML seguro.
-- `DownloadTool` — método `DownloadTextToFileAsJson(theText, fileName)` crea y descarga un blob JSON.
+| Clase | Propósito | Métodos Principales |
+|-------|-----------|-------------------|
+| `ArraysTool` | Manipulación de arrays | `shuffle`, `moveElementInArray`, `removeFromArray`, `combine` |
+| `TextTool` | Operaciones de cadenas | `replaceText`, `insertText`, `getTextBetween`, `removeAllTextFromTo` |
+| `RemoveReplaceOption` | Transformaciones masivas | `removeAllOptions`, `replaceTextOptions` |
+| `HtmlTextTool` | Formateo de HTML | `formatAllText`, `formatTextToCode`, `setToTag`, `removeAllTags` |
+| `DownloadTool` | Descargas en navegador | `DownloadTextToFileAsJson` |
 
-**Contribuir**
-- Abre un issue o envía un pull request.
-- Ejecuta `npm run lint` y `npm run test` antes de contribuir.
+### 💡 Insights de Desarrollo
 
-Si quieres, puedo añadir también un ejemplo específico para cada clase en Angular.
+- **Diseño Modular**: Cada utilidad puede usarse independientemente sin dependencias en otras
+- **Rendimiento**: Algoritmos eficientes de cadenas con límites configurables en iteraciones de reemplazo
+- **Compatibilidad del Navegador**: Funciona con navegadores modernos que soportan Blob API y selecciones de DOM
+- **Integración Angular**: Diseñado como una librería Angular usando estándares de ng-packagr
+
+### 🎓 Resultados de Aprendizaje
+
+Este proyecto demuestra:
+- Construcción de paquetes npm listos para producción con Angular CLI
+- Mejores prácticas de TypeScript en modo estricto y sistema de tipos
+- Arquitectura de librerías con herencia y composición
+- Testing unitario con Jasmine/Karma
+- Algoritmos de manipulación de cadenas y manejo de casos límite
+- Sanitización de HTML y formateo seguro de texto
+
+### 👨‍💼 Autor
+
+**Abraham Sanchez** — Desarrollador full-stack enfocado en utilidades Angular y componentes reutilizables.
