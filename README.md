@@ -1,6 +1,6 @@
 # 📦 @worldsdev/Tools
 
-Angular utility library for arrays, text formatting, HTML transformation, and file downloads.
+TypeScript utility library for arrays, text formatting, HTML transformation, and file downloads.
 
 ---
 
@@ -8,7 +8,7 @@ Angular utility library for arrays, text formatting, HTML transformation, and fi
 
 ### 📋 Project Summary
 
-**@worldsdev/Tools** is a production-ready Angular utility library that provides robust, reusable utilities for common programming tasks. The library is designed for developers who need reliable, well-tested utilities for array manipulation, string operations, HTML formatting, and browser-based file downloads. This package can be built and published to npm for seamless integration into other Angular projects.
+**@worldsdev/Tools** is a production-ready TypeScript utility library that provides robust, reusable utilities for common programming tasks. The library is designed for developers who need reliable, well-tested utilities for array manipulation, string operations, HTML formatting, and browser-based file downloads. This package can be built and published to npm for seamless integration into any TypeScript/JavaScript project (Angular, React, Vue or plain).
 
 ### 🎯 Project Overview
 
@@ -34,19 +34,17 @@ The Tools library encapsulates five core utility classes, each solving specific 
 ### 📂 Project Structure
 
 ```
-projects/tools/
-├── src/
-│   ├── lib/
-│   │   ├── arrays-tool/          # Array manipulation utilities
-│   │   ├── text-tool/            # Base text manipulation
-│   │   ├── remove-replace-option/ # Rule-based transformation
-│   │   ├── html-tool/            # HTML-specific formatting
-│   │   ├── download-tool/        # Browser download utilities
-│   │   └── tools.module.ts       # Angular module export
-│   ├── public-api.ts             # Public barrel export
-│   └── test.ts                   # Test entry point
-├── ng-package.json               # ng-packagr configuration
-└── package.json                  # Package metadata
+src/
+├── lib/
+│   ├── arrays-tool/          # Array manipulation utilities
+│   ├── text-tool/            # Base text manipulation
+│   ├── remove-replace-option/ # Rule-based transformation
+│   ├── html-tool/            # HTML-specific formatting
+│   ├── download-tool/        # Browser download utilities
+│   └── element-like.ts
+├── public-api.ts             # Public barrel export
+package.json                  # Package metadata
+tsconfig.json / vitest.config.ts
 ```
 
 ### 🏗️ Architecture Highlights
@@ -69,12 +67,9 @@ HtmlTextTool (HTML-safe transformations)
 
 ### 🛠️ Technology Stack
 
-- **Angular** (`^21.2.14`) — Framework for module integration and testing
-- **TypeScript** (`^6.0.3`) — Type-safe implementation
-- **ng-packagr** (`^21.2.3`) — Library bundling and distribution
-- **Karma** (`~6.4.0`) — Test runner
-- **Jasmine** (`~5.1.0`) — Unit testing framework
-- **RxJS** (`^7.8.2`) — Reactive utilities (Angular compatibility)
+- **TypeScript** — Type-safe implementation, compiled with `tsc`
+- **Vitest** + **jsdom** — Unit testing
+- **Zero runtime dependencies**
 
 ### 💻 Code Quality & Engineering Practices
 
@@ -89,42 +84,14 @@ This library demonstrates professional software engineering:
 
 ### 🚀 How to Build & Run Locally
 
-**Prerequisites**: Node.js >= 18, npm >= 9, Angular CLI >= 21
+**Prerequisites**: Node.js >= 18
 
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Run development server** (for testing and development):
-   ```bash
-   npm run start
-   ```
-
-3. **Build the library**:
-   ```bash
-   # Build full workspace
-   npm run build
-   
-   # Or build only the tools library
-   ng build tools
-   ```
-
-4. **Run tests**:
-   ```bash
-   npm run test
-   ```
-
-5. **Lint code**:
-   ```bash
-   npm run lint
-   ```
-
-6. **Publish to npm** (after building):
-   ```bash
-   cd dist/@worldsdev/tools
-   npm publish
-   ```
+```bash
+npm install        # install dev dependencies
+npm test           # run tests (vitest + jsdom)
+npm run build      # compile to dist/ with tsc
+npm publish        # builds automatically (prepublishOnly) and publishes dist/
+```
 
 ### 📖 Usage Examples
 
@@ -170,21 +137,21 @@ downloadTool.DownloadTextToFileAsJson({ name: 'John', age: 30 }, 'user-data');
 - **Modular Design**: Each utility can be used independently without dependencies on others
 - **Performance**: Efficient string algorithms with configurable limits on replacement iterations
 - **Browser Compatibility**: Works with modern browsers supporting Blob API and DOM selections
-- **Angular Integration**: Designed as an Angular library using ng-packagr standard
+- **Framework-agnostic**: Plain TypeScript with no runtime dependencies; element-based methods accept anything shaped like `{ nativeElement }` (e.g. Angular's `ElementRef`)
 
 ### 🎓 Learning Outcomes
 
 This project demonstrates:
-- Building production-grade npm packages with Angular CLI
+- Building production-grade npm packages in plain TypeScript
 - TypeScript strict mode and type system best practices
 - Library architecture with inheritance and composition
-- Unit testing with Jasmine/Karma
+- Unit testing with Vitest
 - String manipulation algorithms and edge case handling
 - HTML sanitization and safe text formatting
 
 ### 👨‍💼 Author
 
-**Abraham Sanchez** — Full-stack developer focused on Angular utilities and reusable components.
+**Abraham Sanchez** — Full-stack developer focused on reusable utilities and reusable components.
 
 ---
 
@@ -194,7 +161,7 @@ This project demonstrates:
 
 ### 📋 Resumen del Proyecto
 
-**@worldsdev/Tools** es una librería de utilidades Angular lista para producción que proporciona herramientas robustas y reutilizables para tareas comunes. La librería está diseñada para desarrolladores que necesitan utilidades confiables y bien probadas para manipulación de arrays, operaciones con cadenas, formateo HTML y descargas de archivos en el navegador. Este paquete puede compilarse y publicarse en npm para integrarse sin problemas en otros proyectos Angular.
+**@worldsdev/Tools** es una librería de utilidades TypeScript lista para producción que proporciona herramientas robustas y reutilizables para tareas comunes. La librería está diseñada para desarrolladores que necesitan utilidades confiables y bien probadas para manipulación de arrays, operaciones con cadenas, formateo HTML y descargas de archivos en el navegador. Este paquete puede compilarse y publicarse en npm para integrarse sin problemas en otros proyectos TypeScript/JavaScript (Angular, React, Vue o simples).
 
 ### 🎯 Descripción General del Proyecto
 
@@ -220,19 +187,17 @@ La librería Tools encapsula cinco clases de utilidades principales, cada una re
 ### 📂 Estructura del Proyecto
 
 ```
-projects/tools/
-├── src/
-│   ├── lib/
-│   │   ├── arrays-tool/          # Utilidades de manipulación de arrays
-│   │   ├── text-tool/            # Manipulación base de texto
-│   │   ├── remove-replace-option/ # Transformación basada en reglas
-│   │   ├── html-tool/            # Formateo específico de HTML
-│   │   ├── download-tool/        # Utilidades de descarga en navegador
-│   │   └── tools.module.ts       # Exportación del módulo Angular
-│   ├── public-api.ts             # Exportación barrel pública
-│   └── test.ts                   # Punto de entrada de tests
-├── ng-package.json               # Configuración de ng-packagr
-└── package.json                  # Metadatos del paquete
+src/
+├── lib/
+│   ├── arrays-tool/          # Utilidades de manipulación de arrays
+│   ├── text-tool/            # Manipulación base de texto
+│   ├── remove-replace-option/ # Transformación basada en reglas
+│   ├── html-tool/            # Formateo específico de HTML
+│   ├── download-tool/        # Utilidades de descarga en navegador
+│   └── element-like.ts
+├── public-api.ts             # Exportación barrel pública
+package.json                  # Metadatos del paquete
+tsconfig.json / vitest.config.ts
 ```
 
 ### 🏗️ Aspectos Destacados de la Arquitectura
@@ -255,12 +220,9 @@ HtmlTextTool (transformaciones seguras para HTML)
 
 ### 🛠️ Stack Tecnológico
 
-- **Angular** (`^21.2.14`) — Framework para integración de módulos y testing
-- **TypeScript** (`^6.0.3`) — Implementación con seguridad de tipos
-- **ng-packagr** (`^21.2.3`) — Empaquetado y distribución de librerías
-- **Karma** (`~6.4.0`) — Ejecutor de tests
-- **Jasmine** (`~5.1.0`) — Framework de testing unitario
-- **RxJS** (`^7.8.2`) — Utilidades reactivas (compatibilidad Angular)
+- **TypeScript** — Type-safe implementation, compiled with `tsc`
+- **Vitest** + **jsdom** — Unit testing
+- **Zero runtime dependencies**
 
 ### 💻 Calidad de Código y Prácticas de Ingeniería
 
@@ -275,42 +237,14 @@ Esta librería demuestra ingeniería de software profesional:
 
 ### 🚀 Cómo Compilar y Ejecutar Localmente
 
-**Requisitos Previos**: Node.js >= 18, npm >= 9, Angular CLI >= 21
+**Requisitos Previos**: Node.js >= 18
 
-1. **Instala dependencias**:
-   ```bash
-   npm install
-   ```
-
-2. **Ejecuta el servidor de desarrollo** (para testing y desarrollo):
-   ```bash
-   npm run start
-   ```
-
-3. **Compila la librería**:
-   ```bash
-   # Compila el workspace completo
-   npm run build
-   
-   # O compila solo la librería tools
-   ng build tools
-   ```
-
-4. **Ejecuta tests**:
-   ```bash
-   npm run test
-   ```
-
-5. **Ejecuta el linter**:
-   ```bash
-   npm run lint
-   ```
-
-6. **Publica en npm** (después de compilar):
-   ```bash
-   cd dist/@worldsdev/tools
-   npm publish
-   ```
+```bash
+npm install        # instala dependencias de desarrollo
+npm test           # ejecuta tests (vitest + jsdom)
+npm run build      # compila a dist/ con tsc
+npm publish        # compila automáticamente (prepublishOnly) y publica dist/
+```
 
 ### 📖 Ejemplos de Uso
 
@@ -356,18 +290,18 @@ downloadTool.DownloadTextToFileAsJson({ nombre: 'Juan', edad: 30 }, 'datos-usuar
 - **Diseño Modular**: Cada utilidad puede usarse independientemente sin dependencias en otras
 - **Rendimiento**: Algoritmos eficientes de cadenas con límites configurables en iteraciones de reemplazo
 - **Compatibilidad del Navegador**: Funciona con navegadores modernos que soportan Blob API y selecciones de DOM
-- **Integración Angular**: Diseñado como una librería Angular usando estándares de ng-packagr
+- **Agnóstico de framework**: TypeScript puro sin dependencias en runtime; los métodos con elementos aceptan cualquier objeto `{ nativeElement }` (p. ej. `ElementRef` de Angular)
 
 ### 🎓 Resultados de Aprendizaje
 
 Este proyecto demuestra:
-- Construcción de paquetes npm listos para producción con Angular CLI
+- Construcción de paquetes npm listos para producción en TypeScript puro
 - Mejores prácticas de TypeScript en modo estricto y sistema de tipos
 - Arquitectura de librerías con herencia y composición
-- Testing unitario con Jasmine/Karma
+- Testing unitario con Vitest
 - Algoritmos de manipulación de cadenas y manejo de casos límite
 - Sanitización de HTML y formateo seguro de texto
 
 ### 👨‍💼 Autor
 
-**Abraham Sanchez** — Desarrollador full-stack enfocado en utilidades Angular y componentes reutilizables.
+**Abraham Sanchez** — Desarrollador full-stack enfocado en utilidades reutilizables y componentes reutilizables.
